@@ -157,7 +157,7 @@ export type MemberAccessUpdateState = {
 export type RelationshipFormState = {
   person1Id: string;
   person2Id: string;
-  relationshipType: "parent_of" | "spouse_of";
+  relationshipType: "parent_of" | "child_of" | "spouse_of";
   spouseState: "married" | "divorced" | "separated" | "widowed";
   startDate: string;
   marriageDatePrecision: "dd_mm_yyyy" | "mm_yyyy" | "yyyy";

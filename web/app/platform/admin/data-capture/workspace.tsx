@@ -261,12 +261,14 @@ export function DataCaptureWorkspace() {
   );
 
   const spouseStateMeta = SPOUSE_STATE_CONFIG[relationshipForm.spouseState];
+  const isParentRelationship =
+    relationshipForm.relationshipType === "parent_of" || relationshipForm.relationshipType === "child_of";
   const relationshipStartDateLabel =
-    relationshipForm.relationshipType === "parent_of" ? "Birth / adoption date" : "Marriage date (optional)";
+    isParentRelationship ? "Birth / adoption date" : "Marriage date (optional)";
   const relationshipEndDateLabel =
     relationshipForm.relationshipType === "spouse_of" ? spouseStateMeta.endDateLabel : "";
   const relationshipStatusText =
-    relationshipForm.relationshipType === "parent_of"
+    isParentRelationship
       ? "Use only child links here. Parent labels are derived automatically from direction and gender."
       : spouseStateMeta.status === "active"
         ? "Use only spouse links here. Marriage date becomes the primary relationship date."
@@ -833,6 +835,11 @@ export function DataCaptureWorkspace() {
       };
 
       const marriageDatePayload = buildMarriageDatePayload();
+      const isReverseParentDirection = relationshipForm.relationshipType === "child_of";
+      const normalizedRelationshipType =
+        relationshipForm.relationshipType === "child_of" ? "parent_of" : relationshipForm.relationshipType;
+      const payloadPerson1Id = isReverseParentDirection ? relationshipForm.person2Id : relationshipForm.person1Id;
+      const payloadPerson2Id = isReverseParentDirection ? relationshipForm.person1Id : relationshipForm.person2Id;
       const isEditing = Boolean(editingRelationshipId);
       const response = await fetch(
         isEditing
@@ -842,10 +849,10 @@ export function DataCaptureWorkspace() {
         method: isEditing ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          person1Id: relationshipForm.person1Id,
-          person2Id: relationshipForm.person2Id,
-          relationshipType: relationshipForm.relationshipType,
-          status: relationshipForm.relationshipType === "parent_of" ? "active" : spouseStateMeta.status,
+          person1Id: payloadPerson1Id,
+          person2Id: payloadPerson2Id,
+          relationshipType: normalizedRelationshipType,
+          status: isParentRelationship ? "active" : spouseStateMeta.status,
           startDate: marriageDatePayload.startDate,
           endDate:
             relationshipForm.relationshipType === "spouse_of" && spouseStateMeta.endDateLabel
@@ -1226,7 +1233,7 @@ export function DataCaptureWorkspace() {
           <div className={styles.panel}>
             <div className={styles.panelHeader}>
               <h2>Relationships</h2>
-              <p>Only create Child or Spouse links here. All other relationships are derived automatically.</p>
+              <p>Only create Parent, Child, or Spouse links here. All other relationships are derived automatically.</p>
             </div>
             <form className={styles.form} onSubmit={onCreateRelationship}>
               {editingRelationshipId ? (
@@ -1234,9 +1241,9 @@ export function DataCaptureWorkspace() {
               ) : null}
               <p className={styles.sectionHint}>{relationshipStatusText}</p>
               <div className={styles.grid}>
-                <label className={styles.field}><span>Relationship</span><select value={relationshipForm.relationshipType} onChange={(event) => setRelationshipForm((current) => ({ ...current, relationshipType: event.target.value as RelationshipFormState["relationshipType"], endDate: event.target.value === "parent_of" ? "" : current.endDate, marriageDateDay: event.target.value === "parent_of" ? "" : current.marriageDateDay, marriageDateMonth: event.target.value === "parent_of" ? "" : current.marriageDateMonth, marriageDateYear: event.target.value === "parent_of" ? "" : current.marriageDateYear }))}><option value="parent_of">Child</option><option value="spouse_of">Spouse</option></select></label>
-                <label className={styles.field}><span>{relationshipForm.relationshipType === "parent_of" ? "Parent" : "Spouse one"}</span><select value={relationshipForm.person1Id} onChange={(event) => setRelationshipForm((current) => ({ ...current, person1Id: event.target.value }))}>{availablePersonOptions.map((person) => <option key={person.id} value={person.id}>{person.label}</option>)}</select></label>
-                <label className={styles.field}><span>{relationshipForm.relationshipType === "parent_of" ? "Child" : "Spouse two"}</span><select value={relationshipForm.person2Id} onChange={(event) => setRelationshipForm((current) => ({ ...current, person2Id: event.target.value }))}>{availablePersonOptions.map((person) => <option key={person.id} value={person.id}>{person.label}</option>)}</select></label>
+                <label className={styles.field}><span>Relationship</span><select value={relationshipForm.relationshipType} onChange={(event) => setRelationshipForm((current) => ({ ...current, relationshipType: event.target.value as RelationshipFormState["relationshipType"], endDate: event.target.value === "spouse_of" ? current.endDate : "", marriageDateDay: event.target.value === "spouse_of" ? current.marriageDateDay : "", marriageDateMonth: event.target.value === "spouse_of" ? current.marriageDateMonth : "", marriageDateYear: event.target.value === "spouse_of" ? current.marriageDateYear : "" }))}><option value="parent_of">Child</option><option value="child_of">Parent</option><option value="spouse_of">Spouse</option></select></label>
+                <label className={styles.field}><span>{relationshipForm.relationshipType === "spouse_of" ? "Spouse one" : relationshipForm.relationshipType === "parent_of" ? "Parent" : "Child"}</span><select value={relationshipForm.person1Id} onChange={(event) => setRelationshipForm((current) => ({ ...current, person1Id: event.target.value }))}>{availablePersonOptions.map((person) => <option key={person.id} value={person.id}>{person.label}</option>)}</select></label>
+                <label className={styles.field}><span>{relationshipForm.relationshipType === "spouse_of" ? "Spouse two" : relationshipForm.relationshipType === "parent_of" ? "Child" : "Parent"}</span><select value={relationshipForm.person2Id} onChange={(event) => setRelationshipForm((current) => ({ ...current, person2Id: event.target.value }))}>{availablePersonOptions.map((person) => <option key={person.id} value={person.id}>{person.label}</option>)}</select></label>
                 {relationshipForm.relationshipType === "spouse_of" ? (
                   <label className={styles.field}><span>Spouse status</span><select value={relationshipForm.spouseState} onChange={(event) => setRelationshipForm((current) => ({ ...current, spouseState: event.target.value as RelationshipFormState["spouseState"], endDate: event.target.value === "married" ? "" : current.endDate }))}><option value="married">Married</option><option value="divorced">Divorced</option><option value="separated">Separated</option><option value="widowed">Widowed</option></select></label>
                 ) : null}
@@ -1267,7 +1274,7 @@ export function DataCaptureWorkspace() {
                 {relationshipForm.relationshipType === "spouse_of" && relationshipForm.marriageDatePrecision === "yyyy" ? (
                   <label className={styles.field}><span>Marriage year</span><input type="number" min="1800" max="2200" placeholder="e.g. 2008" value={relationshipForm.marriageDateYear} onChange={(event) => setRelationshipForm((current) => ({ ...current, marriageDateYear: event.target.value }))} /></label>
                 ) : null}
-                {relationshipForm.relationshipType === "parent_of" ? (
+                {isParentRelationship ? (
                   <label className={styles.field}><span>{relationshipStartDateLabel}</span><input type="date" value={relationshipForm.startDate} onChange={(event) => setRelationshipForm((current) => ({ ...current, startDate: event.target.value }))} /></label>
                 ) : null}
                 {relationshipEndDateLabel ? (
