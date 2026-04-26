@@ -34,6 +34,7 @@ import type {
 const MEMBER_RELATION_OPTIONS = [
   "Self / Root member",
   "Spouse",
+  "Parent",
   "Child",
 ] as const;
 
