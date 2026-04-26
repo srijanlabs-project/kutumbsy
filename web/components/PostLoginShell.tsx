@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 import styles from "./PostLoginShell.module.css";
 
@@ -29,6 +30,25 @@ export function PostLoginShell({
 }: PostLoginShellProps) {
   const avatarInitial = (currentUser ?? "U").trim().charAt(0).toUpperCase() || "U";
   const [showFamilyCode, setShowFamilyCode] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    if (isLoggingOut) {
+      return;
+    }
+    setIsLoggingOut(true);
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        cache: "no-store",
+      });
+    } finally {
+      router.replace("/platform/auth");
+      router.refresh();
+      setIsLoggingOut(false);
+    }
+  };
 
   return (
     <main className={styles.page}>
@@ -48,7 +68,12 @@ export function PostLoginShell({
               Add Member
             </Link>
           </nav>
-          <div className={styles.navAvatar}>{avatarInitial}</div>
+          <div className={styles.topNavTools}>
+            <button type="button" className={styles.topLogoutLink} onClick={handleLogout} disabled={isLoggingOut}>
+              {isLoggingOut ? "Logging out..." : "Logout"}
+            </button>
+            <div className={styles.navAvatar}>{avatarInitial}</div>
+          </div>
         </div>
       </header>
 
@@ -100,6 +125,9 @@ export function PostLoginShell({
               <p className={styles.sidebarUserName}>{currentUser || "User"}</p>
               <p className={styles.sidebarUserRole}>{currentFamily ? `Family Admin - ${currentFamily}` : "Family context"}</p>
             </div>
+            <button type="button" className={styles.logoutButton} onClick={handleLogout} disabled={isLoggingOut}>
+              {isLoggingOut ? "Logging out..." : "Logout"}
+            </button>
           </section>
         </aside>
 

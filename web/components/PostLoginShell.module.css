@@ -71,6 +71,12 @@
   align-items: center;
 }
 
+.topNavTools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .topAction {
   font-size: 12px;
   font-weight: 500;
@@ -91,6 +97,27 @@
   color: #f5f0e8;
   background: rgba(255, 255, 255, 0.14);
   font-weight: 600;
+}
+
+.topLogoutLink {
+  border: none;
+  background: transparent;
+  padding: 2px 0;
+  color: rgba(245, 240, 232, 0.92);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.topLogoutLink:hover:not(:disabled) {
+  color: #f5f0e8;
+}
+
+.topLogoutLink:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .navAvatar {
@@ -240,6 +267,7 @@
   border-top: 1px solid rgba(45, 74, 53, 0.12);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -267,6 +295,29 @@
   margin: 1px 0 0;
   font-size: 10px;
   color: #9ba598;
+}
+
+.logoutButton {
+  margin-left: auto;
+  border: 1px solid rgba(45, 74, 53, 0.28);
+  background: #fdfaf5;
+  color: #2d4a35;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutButton:hover:not(:disabled) {
+  background: #e8f0ea;
+  border-color: #2d4a35;
+}
+
+.logoutButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .main {
@@ -377,6 +428,10 @@
   .topActions {
     width: 100%;
     overflow-x: auto;
+  }
+
+  .topNavTools {
+    margin-left: auto;
   }
 
   .shellNoRail,
