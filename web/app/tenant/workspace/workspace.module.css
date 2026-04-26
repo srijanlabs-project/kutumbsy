@@ -385,7 +385,14 @@
 }
 
 .heroGhostButton {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(75 100 82);
+  border-color: rgba(245, 240, 232, 0.28);
+  color: #f5f0e8;
+}
+
+.heroGhostButton:hover {
+  background: rgb(62 84 69);
+  color: #ffffff;
 }
 
 .sideProfile {
