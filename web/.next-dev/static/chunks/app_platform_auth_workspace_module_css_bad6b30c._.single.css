@@ -1,0 +1,718 @@
+/* [project]/app/platform/auth/workspace.module.css [app-client] (css) */
+.workspace-module__vfaI4W__authPage {
+  background: radial-gradient(circle at 100% 0, rgba(212, 168, 67, .1), rgba(0, 0, 0, 0) 22%), linear-gradient(#f5f0e8 0%, #fdfaf5 100%);
+  min-height: 100vh;
+  padding: 28px 18px;
+  font-size: 15px;
+}
+
+.workspace-module__vfaI4W__authShell {
+  grid-template-columns: 1fr 520px;
+  align-items: center;
+  gap: 42px;
+  max-width: 1240px;
+  min-height: calc(100vh - 56px);
+  margin: 0 auto;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__authBrandPanel {
+  color: #1e2420;
+  background: #fdfaf5;
+  border: 1px solid rgba(45, 74, 53, .1);
+  border-radius: 10px;
+  padding: 20px 18px;
+}
+
+.workspace-module__vfaI4W__logoWrap {
+  max-width: 360px;
+}
+
+.workspace-module__vfaI4W__logoImage {
+  -o-object-fit: contain;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.workspace-module__vfaI4W__logoFallback {
+  font-family: var(--font-display);
+  color: #2d4a35;
+  font-size: max(3rem, min(6vw, 5rem));
+}
+
+.workspace-module__vfaI4W__brandQuote {
+  max-width: 520px;
+  font-family: var(--font-accent);
+  color: #3d4840;
+  margin: 24px 0 0;
+  font-size: max(1.7rem, min(2.9vw, 2.35rem));
+  line-height: 1.45;
+}
+
+.workspace-module__vfaI4W__brandList {
+  flex-direction: column;
+  gap: 14px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__brandList li {
+  color: #6b7568;
+  padding-left: 22px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.workspace-module__vfaI4W__brandList li:before {
+  content: "*";
+  color: #d4a843;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.workspace-module__vfaI4W__authCard {
+  background: #fdfaf5;
+  border: 1px solid rgba(45, 74, 53, .1);
+  border-radius: 10px;
+  padding: 28px 28px 30px;
+  box-shadow: 0 1px 4px rgba(30, 36, 32, .06);
+}
+
+.workspace-module__vfaI4W__authModeRow {
+  gap: 10px;
+  margin-bottom: 24px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__authModeButton {
+  color: #6b5a40;
+  cursor: pointer;
+  background: #f6efe4;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  flex: 1;
+  padding: 11px 14px;
+  font-weight: 700;
+}
+
+.workspace-module__vfaI4W__authModeButtonActive {
+  color: #fff;
+  background: #2d4a2d;
+  border-color: #2d4a2d;
+}
+
+.workspace-module__vfaI4W__authHeader h1 {
+  font-family: var(--font-display);
+  color: #2c1f0e;
+  margin: 0;
+  font-size: max(2.15rem, min(4vw, 3.1rem));
+  line-height: 1.05;
+}
+
+.workspace-module__vfaI4W__authHeader p {
+  font-family: var(--font-accent);
+  color: #8c6e52;
+  margin: 10px 0 0;
+  font-size: 1.3rem;
+}
+
+.workspace-module__vfaI4W__authSocialStack {
+  gap: 10px;
+  margin-top: 22px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__authSocialButton {
+  color: #2d2117;
+  cursor: pointer;
+  background: #f7f2e9;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.workspace-module__vfaI4W__authSocialButton:hover {
+  background: #f0e7d8;
+}
+
+.workspace-module__vfaI4W__authDivider {
+  color: #8b6a4a;
+  letter-spacing: .08em;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 4px;
+  font-weight: 700;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__authDivider:before, .workspace-module__vfaI4W__authDivider:after {
+  content: "";
+  background: #e3d4c0;
+  flex: 1;
+  height: 1px;
+}
+
+.workspace-module__vfaI4W__authForm {
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__authField, .workspace-module__vfaI4W__field {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__authField span, .workspace-module__vfaI4W__field span {
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #5a4230;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.workspace-module__vfaI4W__authField input, .workspace-module__vfaI4W__field input {
+  color: #2c1f0e;
+  background: #fdfaf4;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  outline: none;
+  width: 100%;
+  padding: 13px 14px;
+  font-size: 1.01rem;
+}
+
+.workspace-module__vfaI4W__authField input:focus, .workspace-module__vfaI4W__field input:focus {
+  border-color: #4a7a4a;
+  box-shadow: 0 0 0 3px rgba(74, 122, 74, .12);
+}
+
+.workspace-module__vfaI4W__authPrimaryButton, .workspace-module__vfaI4W__primaryButton {
+  color: #fff;
+  cursor: pointer;
+  background: #2d4a2d;
+  border: none;
+  border-radius: 12px;
+  justify-content: center;
+  align-self: stretch;
+  padding: 13px 18px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__dashboardGrid .workspace-module__vfaI4W__primaryButton {
+  color: #f5f0e8;
+  background: #2d4a35;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-size: 13px;
+}
+
+.workspace-module__vfaI4W__authGoldButton {
+  color: #2c1f0e;
+  cursor: pointer;
+  background: #c59106;
+  border: none;
+  border-radius: 12px;
+  justify-content: center;
+  align-self: stretch;
+  padding: 13px 18px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__authPrimaryButton:disabled, .workspace-module__vfaI4W__authGoldButton:disabled, .workspace-module__vfaI4W__primaryButton:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.workspace-module__vfaI4W__authUtilityRow, .workspace-module__vfaI4W__actionRow, .workspace-module__vfaI4W__membershipActions {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__authTextButton, .workspace-module__vfaI4W__linkButton, .workspace-module__vfaI4W__inlineActionLink {
+  color: #2d4a2d;
+  cursor: pointer;
+  text-underline-offset: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.workspace-module__vfaI4W__authHint, .workspace-module__vfaI4W__authMessage, .workspace-module__vfaI4W__message, .workspace-module__vfaI4W__panelText, .workspace-module__vfaI4W__membershipItem span, .workspace-module__vfaI4W__navCard span, .workspace-module__vfaI4W__empty {
+  color: #7a6655;
+}
+
+.workspace-module__vfaI4W__pageShell {
+  color: #2c1f0e;
+  background: radial-gradient(circle at 100% 0, rgba(212, 168, 67, .08), rgba(0, 0, 0, 0) 20%), linear-gradient(#f5ede0 0%, #fdf9f2 100%);
+  min-height: 100vh;
+  padding: 38px 24px 56px;
+}
+
+.workspace-module__vfaI4W__hero {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1180px;
+  margin: 0 auto 24px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__eyebrow {
+  color: #8b3a1a;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: #fdf8f0;
+  border: 1px solid #e8d9c5;
+  border-radius: 12px;
+  margin: 0 0 12px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__title {
+  font-family: var(--font-display);
+  margin: 0;
+  font-size: max(2.2rem, min(4vw, 3.4rem));
+  line-height: 1.08;
+}
+
+.workspace-module__vfaI4W__subtitle {
+  color: #6b5a40;
+  max-width: 700px;
+  margin: 12px 0 0;
+  line-height: 1.7;
+}
+
+.workspace-module__vfaI4W__sessionCard, .workspace-module__vfaI4W__panel {
+  background: #fdfaf5;
+  border: 1px solid rgba(45, 74, 53, .1);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(30, 36, 32, .06);
+}
+
+.workspace-module__vfaI4W__sessionCard {
+  flex-direction: column;
+  gap: 6px;
+  min-width: 260px;
+  padding: 18px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__sessionLabel {
+  color: #9ba598;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.workspace-module__vfaI4W__layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__dashboardGrid {
+  gap: 18px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__dashboardTopRow {
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__dashboardMiddleRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__activeFamilyCard {
+  border-width: 1.5px;
+  border-color: rgba(45, 74, 53, .18);
+  min-height: 132px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.workspace-module__vfaI4W__activeFamilyCard:before {
+  content: "";
+  background: linear-gradient(90deg, #2d4a2d, #4a7a4a);
+  height: 4px;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+}
+
+.workspace-module__vfaI4W__activeFamilyTag {
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #9ba598;
+  margin: 0 0 8px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.workspace-module__vfaI4W__roleBadge {
+  color: #2d4a35;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  background: #e8f0ea;
+  border-radius: 999px;
+  align-items: center;
+  margin-right: 8px;
+  padding: 2px 8px;
+  font-size: .66rem;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__activeFamilyName {
+  font-family: var(--font-display);
+  color: #1e2420;
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.workspace-module__vfaI4W__activeFamilyRoleLine {
+  color: #6b7568;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__ghostButton {
+  color: #6b7568;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid rgba(45, 74, 53, .18);
+  border-radius: 7px;
+  align-self: flex-start;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.workspace-module__vfaI4W__ghostButton:hover {
+  background: #f7efe2;
+}
+
+.workspace-module__vfaI4W__activeFamilyStats {
+  border-top: 1px solid rgba(45, 74, 53, .14);
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__activeFamilyStats div {
+  flex-direction: column;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__activeFamilyStats strong {
+  font-family: var(--font-display);
+  color: #2d4a35;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.workspace-module__vfaI4W__activeFamilyStats span {
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9ba598;
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+.workspace-module__vfaI4W__profileCard {
+  min-height: 180px;
+}
+
+.workspace-module__vfaI4W__profileCardActions {
+  gap: 10px;
+  margin-top: 14px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__sessionStatus {
+  color: #6b7568;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__sessionUserName {
+  font-family: var(--font-accent);
+  color: #1e2420;
+  margin-top: 6px;
+  font-size: 17px;
+  display: block;
+}
+
+.workspace-module__vfaI4W__sessionPhone {
+  color: #6b7568;
+  margin-top: 4px;
+  font-size: 13px;
+  display: block;
+}
+
+.workspace-module__vfaI4W__sessionStatusDot {
+  background: #4caf50;
+  border-radius: 999px;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, .2);
+}
+
+.workspace-module__vfaI4W__createCard {
+  max-width: 520px;
+}
+
+.workspace-module__vfaI4W__panel {
+  padding: 20px 24px;
+}
+
+.workspace-module__vfaI4W__panel h2 {
+  font-family: var(--font-accent);
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.workspace-module__vfaI4W__cardHeader {
+  border-bottom: 1px solid rgba(45, 74, 53, .1);
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__cardHeaderMeta {
+  color: #9ba598;
+  font-size: 11px;
+}
+
+.workspace-module__vfaI4W__form {
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__secondaryButton, .workspace-module__vfaI4W__switchButton {
+  color: #2d4a35;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid rgba(45, 74, 53, .18);
+  border-radius: 7px;
+  align-self: flex-start;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.workspace-module__vfaI4W__secondaryButton {
+  margin-top: 4px;
+}
+
+.workspace-module__vfaI4W__profileCard .workspace-module__vfaI4W__secondaryButton {
+  justify-content: center;
+  width: 100%;
+}
+
+.workspace-module__vfaI4W__logoutButton {
+  color: #8b4513;
+  border-color: rgba(139, 69, 19, .2);
+}
+
+.workspace-module__vfaI4W__sessionFooterNote {
+  color: #9ba598;
+  margin: 18px 0 0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.workspace-module__vfaI4W__membershipBoxNoBorder {
+  margin-top: 18px;
+}
+
+.workspace-module__vfaI4W__navGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+  display: grid;
+}
+
+.workspace-module__vfaI4W__navCard, .workspace-module__vfaI4W__membershipItem {
+  color: #1e2420;
+  background: #f5f0e8;
+  border: 1.5px solid rgba(45, 74, 53, .1);
+  border-radius: 8px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__navCardIcon {
+  background: #e8f0ea;
+  border-radius: 7px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__navCard strong, .workspace-module__vfaI4W__membershipItem strong {
+  font-size: 1rem;
+}
+
+.workspace-module__vfaI4W__membershipItem {
+  background: #e8f0ea;
+  border-color: rgba(45, 74, 53, .32);
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.workspace-module__vfaI4W__membershipBadge {
+  color: #f5f0e8;
+  background: #2d4a35;
+  border-radius: 999px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__membershipMeta {
+  flex-direction: column;
+  gap: 3px;
+  display: flex;
+}
+
+.workspace-module__vfaI4W__privacyNote {
+  color: #2d4a35;
+  background: #e8f0ea;
+  border: 1px solid rgba(45, 74, 53, .18);
+  border-radius: 8px;
+  margin: 0;
+  padding: 11px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.workspace-module__vfaI4W__addFamilyButton {
+  color: #6b7568;
+  cursor: pointer;
+  background: none;
+  border: 1.5px dashed rgba(45, 74, 53, .18);
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.workspace-module__vfaI4W__addFamilyButton:hover {
+  color: #2d4a35;
+  background: #e8f0ea;
+  border-color: #4e7a5a;
+}
+
+.workspace-module__vfaI4W__membershipList {
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+@media (max-width: 980px) {
+  .workspace-module__vfaI4W__authShell, .workspace-module__vfaI4W__hero, .workspace-module__vfaI4W__layout, .workspace-module__vfaI4W__dashboardTopRow, .workspace-module__vfaI4W__dashboardMiddleRow {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .workspace-module__vfaI4W__hero {
+    gap: 18px;
+  }
+
+  .workspace-module__vfaI4W__activeFamilyName {
+    font-size: 24px;
+  }
+
+  .workspace-module__vfaI4W__activeFamilyRoleLine {
+    font-size: 12px;
+  }
+
+  .workspace-module__vfaI4W__sessionUserName {
+    font-size: 17px;
+  }
+
+  .workspace-module__vfaI4W__sessionPhone {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 760px) {
+  .workspace-module__vfaI4W__authPage, .workspace-module__vfaI4W__pageShell {
+    padding: 18px 12px 32px;
+  }
+
+  .workspace-module__vfaI4W__authCard, .workspace-module__vfaI4W__panel, .workspace-module__vfaI4W__sessionCard {
+    border-radius: 18px;
+  }
+
+  .workspace-module__vfaI4W__authModeRow, .workspace-module__vfaI4W__navGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=app_platform_auth_workspace_module_css_bad6b30c._.single.css.map*/

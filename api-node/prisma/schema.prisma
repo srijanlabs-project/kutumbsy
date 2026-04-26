@@ -1,0 +1,294 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Family {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  slug           String         @unique
+  familyCode     String         @unique @default(dbgenerated("generate_family_code()")) @map("family_code")
+  description    String?
+  nativePlace    String?        @map("native_place")
+  createdByPhone String?        @map("created_by_phone")
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime       @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  memberships    FamilyMembership[]
+  auditLogs      FamilyAuditLog[]
+  joinRequests   WorkspaceJoinRequest[]
+  people         Person[]
+  relationships  Relationship[]
+  userLinks      UserPersonLink[]
+
+  @@map("families")
+}
+
+model Person {
+  id                    String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  familyId              String         @map("family_id") @db.Uuid
+  fullName              String         @map("full_name")
+  gender                String?
+  dateOfBirth           DateTime?      @map("date_of_birth") @db.Date
+  isDeceased            Boolean        @default(false) @map("is_deceased")
+  photoUrl              String?        @map("photo_url")
+  nativeVillage         String?        @map("native_village")
+  gotra                 String?
+  kuldevta              String?
+  community             String?
+  education             String?
+  occupation            String?
+  notes                 String?
+  metadata              Json           @default("{}")
+  createdAt             DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt             DateTime       @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  family                Family         @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  joinRequests          WorkspaceJoinRequest[]
+  relationshipsAsFirst  Relationship[] @relation("PersonOne")
+  relationshipsAsSecond Relationship[] @relation("PersonTwo")
+  userLinks             UserPersonLink[]
+
+  @@index([familyId], map: "idx_people_family_id")
+  @@map("people")
+}
+
+model User {
+  id             String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mobileNumber   String             @unique @map("mobile_number")
+  passwordHash   String?            @map("password_hash")
+  fullName       String             @map("full_name")
+  phoneVerifiedAt DateTime?         @map("phone_verified_at") @db.Timestamptz(6)
+  status         String             @default("active")
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime           @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  auditLogs      FamilyAuditLog[]
+  joinRequests   WorkspaceJoinRequest[] @relation("JoinRequestRequester")
+  memberships    FamilyMembership[]
+  personLinks    UserPersonLink[]
+  reviewedJoinRequests WorkspaceJoinRequest[] @relation("JoinRequestReviewer")
+
+  @@index([status], map: "idx_users_status")
+  @@map("users")
+}
+
+model FamilyMembership {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  familyId    String   @map("family_id") @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  role        String
+  status      String   @default("active")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  family      Family   @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([familyId, userId], map: "family_memberships_family_id_user_id_key")
+  @@index([familyId], map: "idx_family_memberships_family_id")
+  @@index([userId], map: "idx_family_memberships_user_id")
+  @@index([role], map: "idx_family_memberships_role")
+  @@map("family_memberships")
+}
+
+model UserPersonLink {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  familyId    String   @map("family_id") @db.Uuid
+  personId    String   @map("person_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  family      Family   @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  person      Person   @relation(fields: [personId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([familyId, userId], map: "user_person_links_family_id_user_id_key")
+  @@index([familyId], map: "idx_user_person_links_family_id")
+  @@index([personId], map: "idx_user_person_links_person_id")
+  @@index([userId], map: "idx_user_person_links_user_id")
+  @@map("user_person_links")
+}
+
+model Relationship {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  familyId         String   @map("family_id") @db.Uuid
+  person1Id        String   @map("person_1_id") @db.Uuid
+  person2Id        String   @map("person_2_id") @db.Uuid
+  relationshipType String   @map("relationship_type")
+  status           String   @default("active")
+  startDate        DateTime? @map("start_date") @db.Date
+  endDate          DateTime? @map("end_date") @db.Date
+  notes            String?
+  metadata         Json     @default("{}")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  family           Family   @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  personOne        Person   @relation("PersonOne", fields: [person1Id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  personTwo        Person   @relation("PersonTwo", fields: [person2Id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([familyId], map: "idx_relationships_family_id")
+  @@index([person1Id], map: "idx_relationships_person_1_id")
+  @@index([person2Id], map: "idx_relationships_person_2_id")
+  @@index([status], map: "idx_relationships_status")
+  @@map("relationships")
+}
+
+model WorkspaceJoinRequest {
+  id               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  familyId         String    @map("family_id") @db.Uuid
+  requestingUserId String    @map("requesting_user_id") @db.Uuid
+  targetPersonId   String?   @map("target_person_id") @db.Uuid
+  requestedRole    String    @default("viewer") @map("requested_role")
+  status           String    @default("pending")
+  message          String?
+  reviewedByUserId String?   @map("reviewed_by_user_id") @db.Uuid
+  reviewedAt       DateTime? @map("reviewed_at") @db.Timestamptz(6)
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  family           Family    @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  requestingUser   User      @relation("JoinRequestRequester", fields: [requestingUserId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  reviewedByUser   User?     @relation("JoinRequestReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  targetPerson     Person?   @relation(fields: [targetPersonId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+
+  @@index([familyId], map: "idx_workspace_join_requests_family_id")
+  @@index([requestingUserId], map: "idx_workspace_join_requests_requesting_user_id")
+  @@index([status], map: "idx_workspace_join_requests_status")
+  @@map("workspace_join_requests")
+}
+
+model FamilyAuditLog {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  familyId    String   @map("family_id") @db.Uuid
+  actorUserId String?  @map("actor_user_id") @db.Uuid
+  action      String
+  entityType  String   @map("entity_type")
+  entityId    String   @map("entity_id")
+  metadata    Json     @default("{}")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  actorUser   User?    @relation(fields: [actorUserId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  family      Family   @relation(fields: [familyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([familyId], map: "idx_family_audit_logs_family_id")
+  @@index([actorUserId], map: "idx_family_audit_logs_actor_user_id")
+  @@index([action], map: "idx_family_audit_logs_action")
+  @@map("family_audit_logs")
+}
+
+model Tenant {
+  id             String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  slug           String               @unique
+  status         String               @default("active")
+  contactName    String?              @map("contact_name")
+  contactEmail   String?              @map("contact_email")
+  contactPhone   String?              @map("contact_phone")
+  trialEndsAt    DateTime?            @map("trial_ends_at") @db.Timestamptz(6)
+  suspendedAt    DateTime?            @map("suspended_at") @db.Timestamptz(6)
+  createdAt      DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime             @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  subscriptions  TenantSubscription[]
+
+  @@index([status], map: "idx_tenants_status")
+  @@map("tenants")
+}
+
+model Plan {
+  id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String               @unique
+  name          String
+  description   String?
+  priceInr      Int                  @map("price_inr")
+  billingCycle  String               @map("billing_cycle")
+  trialDays     Int                  @default(14) @map("trial_days")
+  isActive      Boolean              @default(true) @map("is_active")
+  features      Json                 @default("{}")
+  createdAt     DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime             @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  subscriptions TenantSubscription[]
+
+  @@map("plans")
+}
+
+model TenantSubscription {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tenantId   String    @map("tenant_id") @db.Uuid
+  planId     String    @map("plan_id") @db.Uuid
+  status     String    @default("trialing")
+  startAt    DateTime  @default(now()) @map("start_at") @db.Timestamptz(6)
+  endAt      DateTime? @map("end_at") @db.Timestamptz(6)
+  autoRenew  Boolean   @default(true) @map("auto_renew")
+  seats      Int       @default(5)
+  metadata   Json      @default("{}")
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  plan       Plan      @relation(fields: [planId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  tenant     Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([tenantId], map: "idx_tenant_subscriptions_tenant_id")
+  @@index([planId], map: "idx_tenant_subscriptions_plan_id")
+  @@index([status], map: "idx_tenant_subscriptions_status")
+  @@map("tenant_subscriptions")
+}
+
+model Lead {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  source          String?
+  companyName     String?   @map("company_name")
+  contactName     String    @map("contact_name")
+  contactEmail    String?   @map("contact_email")
+  contactPhone    String?   @map("contact_phone")
+  city            String?
+  status          String    @default("new")
+  pipelineStage   String    @default("demo_request") @map("pipeline_stage")
+  assignedTo      String?   @map("assigned_to")
+  notes           String?
+  lastContactedAt DateTime? @map("last_contacted_at") @db.Timestamptz(6)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([status], map: "idx_leads_status")
+  @@index([pipelineStage], map: "idx_leads_pipeline_stage")
+  @@map("leads")
+}
+
+model PlatformRoleTemplate {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  key         String   @unique
+  name        String
+  description String?
+  isSystem    Boolean  @default(true) @map("is_system")
+  permissions Json     @default("{}")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("platform_role_templates")
+}
+
+model FaqArticle {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  category  String
+  question  String
+  answer    String
+  published Boolean  @default(true)
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([category], map: "idx_faq_articles_category")
+  @@index([published], map: "idx_faq_articles_published")
+  @@map("faq_articles")
+}
+
+model SystemSetting {
+  key         String   @id
+  value       Json     @default("{}")
+  description String?
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("system_settings")
+}
+
+model schema_migrations {
+  version    String   @id
+  applied_at DateTime @default(now()) @db.Timestamptz(6)
+}

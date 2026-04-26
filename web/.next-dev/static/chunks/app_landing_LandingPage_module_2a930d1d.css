@@ -1,0 +1,241 @@
+/* [project]/app/landing/LandingPage.module.css [app-client] (css) */
+.LandingPage-module__borBAq__page {
+  color: #f4f0e8;
+  background: radial-gradient(60rem 40rem at 80% 20%, rgba(104, 171, 87, .22), rgba(0, 0, 0, 0) 65%), linear-gradient(120deg, #10301f 0%, #1b4a2d 45%, #3f7543 100%);
+  min-height: 100vh;
+  padding: 2rem;
+  font-size: calc(1rem - 1px);
+}
+
+.LandingPage-module__borBAq__hero {
+  grid-template-columns: 1fr minmax(340px, 520px);
+  align-items: center;
+  gap: 3rem;
+  width: min(1200px, 100%);
+  min-height: calc(100vh - 4rem);
+  margin: 0 auto;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__brandBlock {
+  max-width: 620px;
+}
+
+.LandingPage-module__borBAq__brandLogo {
+  -o-object-fit: contain;
+  object-fit: contain;
+  border-radius: 14px;
+  width: min(420px, 92%);
+  height: auto;
+  display: block;
+}
+
+.LandingPage-module__borBAq__brandTitle {
+  font-size: max(2.6rem, min(6vw, 4.4rem));
+  line-height: 1;
+  font-family: var(--font-display);
+  margin: 0;
+  font-weight: 700;
+}
+
+.LandingPage-module__borBAq__brandSubtitle {
+  font-family: var(--font-accent);
+  color: #e6dcc6;
+  margin: 1.2rem 0 1.8rem;
+  font-size: max(1.3rem, min(2.4vw, 2rem));
+  line-height: 1.45;
+}
+
+.LandingPage-module__borBAq__benefitList {
+  color: #f4eedf;
+  gap: .8rem;
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 1.03rem;
+  line-height: 1.5;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__card {
+  color: #2f2b25;
+  background: #f8f8f7;
+  border: 1px solid rgba(47, 43, 37, .11);
+  border-radius: 1.75rem;
+  padding: 2.5rem 2.2rem;
+  box-shadow: 0 1.6rem 3.5rem rgba(9, 29, 16, .28);
+}
+
+.LandingPage-module__borBAq__cardTitle {
+  font-family: var(--font-display);
+  color: #27180f;
+  margin: 0;
+  font-size: max(2rem, min(3vw, 3rem));
+}
+
+.LandingPage-module__borBAq__cardText {
+  color: #745237;
+  margin: .6rem 0 1.4rem;
+  font-size: 1.06rem;
+}
+
+.LandingPage-module__borBAq__actionStack {
+  gap: .75rem;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__socialButton {
+  text-align: center;
+  color: #2f2218;
+  background: #f2efe9;
+  border: 1px solid #d8c9b7;
+  border-radius: .75rem;
+  padding: .95rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: block;
+}
+
+.LandingPage-module__borBAq__separator {
+  text-align: center;
+  text-transform: uppercase;
+  color: #966f48;
+  margin: 1.25rem 0;
+  font-weight: 700;
+}
+
+.LandingPage-module__borBAq__inputs {
+  gap: .8rem;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__input {
+  color: #2f2b25;
+  width: 100%;
+  font: inherit;
+  background: #f4f1ea;
+  border: 1px solid #d8c9b7;
+  border-radius: .75rem;
+  padding: .9rem 1rem;
+}
+
+.LandingPage-module__borBAq__primaryButton {
+  color: #f4f0e8;
+  background: linear-gradient(90deg, #1f432a, #2f6135);
+  border-radius: .75rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.05rem;
+  padding: .95rem 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.LandingPage-module__borBAq__links {
+  color: #87613d;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .45rem;
+  margin-top: 1.15rem;
+  font-size: .96rem;
+  display: flex;
+}
+
+.LandingPage-module__borBAq__links a {
+  color: #433226;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.LandingPage-module__borBAq__authModeRow {
+  gap: 10px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.LandingPage-module__borBAq__authModeButton {
+  color: #6b5a40;
+  cursor: pointer;
+  background: #f7f2e9;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  flex: 1;
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.LandingPage-module__borBAq__authModeButtonActive {
+  color: #fff;
+  background: #2d4a2d;
+  border-color: #2d4a2d;
+}
+
+.LandingPage-module__borBAq__authForm {
+  gap: 12px;
+  margin-top: 14px;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__authField {
+  gap: 6px;
+  display: grid;
+}
+
+.LandingPage-module__borBAq__authField span {
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #5a4230;
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.LandingPage-module__borBAq__authField input {
+  color: #2c1f0e;
+  width: 100%;
+  font: inherit;
+  background: #fdfaf4;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  padding: 12px 13px;
+}
+
+.LandingPage-module__borBAq__authUtilityRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.LandingPage-module__borBAq__authTextButton {
+  color: #2d4a2d;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.LandingPage-module__borBAq__authHint, .LandingPage-module__borBAq__authMessage {
+  color: #7a6655;
+  font-size: .92rem;
+}
+
+@media (max-width: 960px) {
+  .LandingPage-module__borBAq__page {
+    padding: 1rem;
+  }
+
+  .LandingPage-module__borBAq__hero {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+
+  .LandingPage-module__borBAq__card {
+    padding: 1.6rem 1.1rem;
+  }
+}
+
+/*# sourceMappingURL=app_landing_LandingPage_module_2a930d1d.css.map*/

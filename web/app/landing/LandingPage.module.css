@@ -1,0 +1,240 @@
+.page {
+  min-height: 100vh;
+  font-size: calc(1rem - 1px);
+  padding: 2rem;
+  background:
+    radial-gradient(60rem 40rem at 80% 20%, rgba(104, 171, 87, 0.22), transparent 65%),
+    linear-gradient(120deg, #10301f 0%, #1b4a2d 45%, #3f7543 100%);
+  color: #f4f0e8;
+}
+
+.hero {
+  width: min(1200px, 100%);
+  min-height: calc(100vh - 4rem);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(340px, 520px);
+  gap: 3rem;
+  align-items: center;
+}
+
+.brandBlock {
+  max-width: 620px;
+}
+
+.brandLogo {
+  width: min(420px, 92%);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+}
+
+.brandTitle {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.brandSubtitle {
+  margin: 1.2rem 0 1.8rem;
+  font-family: var(--font-accent);
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  line-height: 1.45;
+  color: #e6dcc6;
+}
+
+.benefitList {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.8rem;
+  color: #f4eedf;
+  font-size: 1.03rem;
+  line-height: 1.5;
+}
+
+.card {
+  background: #f8f8f7;
+  color: #2f2b25;
+  border-radius: 1.75rem;
+  padding: 2.5rem 2.2rem;
+  border: 1px solid rgba(47, 43, 37, 0.11);
+  box-shadow: 0 1.6rem 3.5rem rgba(9, 29, 16, 0.28);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #27180f;
+}
+
+.cardText {
+  margin: 0.6rem 0 1.4rem;
+  color: #745237;
+  font-size: 1.06rem;
+}
+
+.actionStack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.socialButton {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #d8c9b7;
+  background: #f2efe9;
+  color: #2f2218;
+  padding: 0.95rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+}
+
+.separator {
+  margin: 1.25rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: #966f48;
+  font-weight: 700;
+}
+
+.inputs {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #d8c9b7;
+  background: #f4f1ea;
+  color: #2f2b25;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1rem;
+  font: inherit;
+}
+
+.primaryButton {
+  margin-top: 1.05rem;
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.95rem 1rem;
+  border-radius: 0.75rem;
+  color: #f4f0e8;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #1f432a, #2f6135);
+}
+
+.links {
+  margin-top: 1.15rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  color: #87613d;
+  font-size: 0.96rem;
+}
+
+.links a {
+  color: #433226;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.authModeRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.authModeButton {
+  flex: 1;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  background: #f7f2e9;
+  color: #6b5a40;
+  padding: 10px 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.authModeButtonActive {
+  background: #2d4a2d;
+  border-color: #2d4a2d;
+  color: #fff;
+}
+
+.authForm {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.authField {
+  display: grid;
+  gap: 6px;
+}
+
+.authField span {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a4230;
+}
+
+.authField input {
+  width: 100%;
+  border: 1px solid #dcc8ae;
+  border-radius: 12px;
+  background: #fdfaf4;
+  color: #2c1f0e;
+  padding: 12px 13px;
+  font: inherit;
+}
+
+.authUtilityRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.authTextButton {
+  border: none;
+  background: transparent;
+  color: #2d4a2d;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.authHint,
+.authMessage {
+  color: #7a6655;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 960px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .card {
+    padding: 1.6rem 1.1rem;
+  }
+}

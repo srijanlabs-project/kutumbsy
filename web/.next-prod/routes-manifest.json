@@ -1,0 +1,209 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/families/[id]/audit-logs",
+      "regex": "^/api/families/([^/]+?)/audit\\-logs(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/audit\\-logs(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/join-requests",
+      "regex": "^/api/families/([^/]+?)/join\\-requests(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/join\\-requests(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/join-requests/[requestId]/review",
+      "regex": "^/api/families/([^/]+?)/join\\-requests/([^/]+?)/review(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPrequestId": "nxtPrequestId"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/join\\-requests/(?<nxtPrequestId>[^/]+?)/review(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/member-logins",
+      "regex": "^/api/families/([^/]+?)/member\\-logins(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/member\\-logins(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/member-logins/[membershipId]",
+      "regex": "^/api/families/([^/]+?)/member\\-logins/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPmembershipId": "nxtPmembershipId"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/member\\-logins/(?<nxtPmembershipId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/people",
+      "regex": "^/api/families/([^/]+?)/people(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/people(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/people/[personId]",
+      "regex": "^/api/families/([^/]+?)/people/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPpersonId": "nxtPpersonId"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/people/(?<nxtPpersonId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/person-merges/[auditLogId]/undo",
+      "regex": "^/api/families/([^/]+?)/person\\-merges/([^/]+?)/undo(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPauditLogId": "nxtPauditLogId"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/person\\-merges/(?<nxtPauditLogId>[^/]+?)/undo(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/relationships",
+      "regex": "^/api/families/([^/]+?)/relationships(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/relationships(?:/)?$"
+    },
+    {
+      "page": "/api/families/[id]/relationships/[relationshipId]",
+      "regex": "^/api/families/([^/]+?)/relationships/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPrelationshipId": "nxtPrelationshipId"
+      },
+      "namedRegex": "^/api/families/(?<nxtPid>[^/]+?)/relationships/(?<nxtPrelationshipId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/family-space/members/[personId]",
+      "regex": "^/family\\-space/members/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPpersonId": "nxtPpersonId"
+      },
+      "namedRegex": "^/family\\-space/members/(?<nxtPpersonId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/tenant/workspace/members/[personId]",
+      "regex": "^/tenant/workspace/members/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPpersonId": "nxtPpersonId"
+      },
+      "namedRegex": "^/tenant/workspace/members/(?<nxtPpersonId>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/create-family",
+      "regex": "^/create\\-family(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/create\\-family(?:/)?$"
+    },
+    {
+      "page": "/family-space",
+      "regex": "^/family\\-space(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/family\\-space(?:/)?$"
+    },
+    {
+      "page": "/family-space/data-capture",
+      "regex": "^/family\\-space/data\\-capture(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/family\\-space/data\\-capture(?:/)?$"
+    },
+    {
+      "page": "/family-space/requests",
+      "regex": "^/family\\-space/requests(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/family\\-space/requests(?:/)?$"
+    },
+    {
+      "page": "/join-family",
+      "regex": "^/join\\-family(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/join\\-family(?:/)?$"
+    },
+    {
+      "page": "/platform/admin/data-capture",
+      "regex": "^/platform/admin/data\\-capture(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/platform/admin/data\\-capture(?:/)?$"
+    },
+    {
+      "page": "/platform/admin/security",
+      "regex": "^/platform/admin/security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/platform/admin/security(?:/)?$"
+    },
+    {
+      "page": "/platform/auth",
+      "regex": "^/platform/auth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/platform/auth(?:/)?$"
+    },
+    {
+      "page": "/tenant/workspace",
+      "regex": "^/tenant/workspace(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tenant/workspace(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

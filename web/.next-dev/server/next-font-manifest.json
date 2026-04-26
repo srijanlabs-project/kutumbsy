@@ -1,0 +1,57 @@
+{
+  "app": {
+    "[project]/app/_not-found/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/family-space/data-capture/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/family-space/members/[personId]/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/family-space/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/family-space/requests/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/join-family/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/platform/admin/data-capture/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/platform/admin/security/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ],
+    "[project]/app/platform/auth/page": [
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

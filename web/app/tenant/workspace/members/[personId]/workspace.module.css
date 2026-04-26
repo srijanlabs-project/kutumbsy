@@ -1,0 +1,859 @@
+.page {
+  --parchment: #f5f0e8;
+  --parchment2: #ede8dd;
+  --parchment3: #e4ddd0;
+  --forest: #2d4a35;
+  --forest-mid: #3a5e44;
+  --forest-lt: #4e7a5a;
+  --forest-pale: #e8f0ea;
+  --rust: #8b4513;
+  --gold: #8a6c2e;
+  --gold-lt: #b8943e;
+  --ink: #1e2420;
+  --ink-mid: #3d4840;
+  --ink-lt: #6b7568;
+  --ink-faint: #9ba598;
+  --white: #fdfaf5;
+  --border: rgba(45, 74, 53, 0.12);
+  --border-mid: rgba(45, 74, 53, 0.2);
+
+  min-height: 100vh;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+.topnav {
+  background: var(--forest);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+}
+
+.navBrandLogo {
+  width: 126px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2px;
+}
+
+.navLinks a {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(245, 240, 232, 0.65);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  display: block;
+}
+
+.navLinks a:hover {
+  color: var(--parchment);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navLinks .activeLink {
+  color: var(--parchment);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.navAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--forest-lt);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--parchment);
+}
+
+.appLayout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  min-height: calc(100vh - 52px);
+}
+
+.sidebar {
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+}
+
+.sidebarContext {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.sidebarContextLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sidebarContextFamily {
+  font-family: var(--font-accent), serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.sidebarContextUser {
+  font-size: 12px;
+  color: var(--ink-lt);
+}
+
+.sidebarNavLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0 20px;
+  margin-bottom: 8px;
+}
+
+.sidebarNavItem {
+  display: block;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  border-left: 3px solid transparent;
+  text-decoration: none;
+}
+
+.sidebarNavItem:hover {
+  background: var(--forest-pale);
+  color: var(--forest);
+}
+
+.activeSidebarItem {
+  background: var(--forest-pale);
+  color: var(--forest);
+  border-left-color: var(--forest);
+  font-weight: 600;
+}
+
+.main {
+  background: var(--parchment);
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+.lineageBanner {
+  background: var(--forest);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid var(--gold);
+  overflow-x: auto;
+}
+
+.lineageStep {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.lineageNode {
+  border: none;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lineageNode:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.currentLineageNode {
+  background: var(--gold-lt);
+}
+
+.lineageAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--forest-lt);
+  color: var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lineageName {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.85);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.lineageRel {
+  display: block;
+  font-size: 10px;
+  color: rgba(245, 240, 232, 0.5);
+}
+
+.currentLineageNode .lineageName {
+  color: #20180f;
+  font-weight: 700;
+}
+
+.currentLineageNode .lineageRel {
+  color: rgba(32, 24, 15, 0.65);
+}
+
+.lineageArrow {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.profileHeader {
+  padding: 36px 32px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profilePhoto {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--forest-lt), var(--forest));
+  color: var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 3px solid var(--parchment3);
+  position: relative;
+  overflow: hidden;
+}
+
+.profilePhotoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profilePhotoBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold-lt);
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+}
+
+.profileIdentity {
+  flex: 1;
+}
+
+.profileName {
+  font-family: var(--font-display), serif;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.profileMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+.metaChip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.chipForest {
+  background: var(--forest-pale);
+  color: var(--forest);
+}
+
+.chipGold {
+  background: #f5ead8;
+  color: var(--rust);
+}
+
+.chipInk {
+  background: var(--parchment3);
+  color: var(--ink-mid);
+}
+
+.profileQuickFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.quickFact {
+  font-size: 12px;
+  color: var(--ink-lt);
+}
+
+.profileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: var(--forest);
+  color: var(--parchment);
+}
+
+.btnPrimary:hover {
+  background: var(--forest-mid);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--forest);
+  border: 1.5px solid var(--border-mid);
+}
+
+.btnSecondary:hover {
+  background: var(--forest-pale);
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--ink-lt);
+  border: 1.5px solid var(--border);
+}
+
+.fullWidthBtn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.tabBar {
+  display: flex;
+  gap: 0;
+  padding: 0 32px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 52px;
+  z-index: 10;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-lt);
+  padding: 13px 18px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: var(--forest);
+  border-bottom-color: var(--forest);
+}
+
+.tabCount {
+  font-size: 10px;
+  background: var(--parchment3);
+  color: var(--ink-lt);
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+
+.contentBody {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionCard {
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.sectionCardHeader {
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionCardTitle {
+  font-family: var(--font-accent), serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sectionMeta {
+  font-size: 12px;
+  color: var(--ink-lt);
+}
+
+.sectionCardBody {
+  padding: 20px 24px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+}
+
+.infoItemLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 3px;
+}
+
+.infoItemValue {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.highlightValue {
+  color: var(--forest);
+}
+
+.connectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.connectionRow {
+  border: none;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.connectionRow:hover {
+  background: var(--parchment);
+}
+
+.connAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--parchment3), var(--parchment2));
+  border: 1.5px solid var(--border);
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.connInfo {
+  flex: 1;
+}
+
+.connName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.connDetail {
+  font-size: 11px;
+  color: var(--ink-lt);
+}
+
+.connRelBadge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+
+.badgeSpouse {
+  background: #fdefd8;
+  color: var(--rust);
+}
+
+.badgeChild {
+  background: var(--forest-pale);
+  color: var(--forest);
+}
+
+.badgeFamily {
+  background: #f3f0ea;
+  color: var(--ink-mid);
+}
+
+.connArrow {
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-left: 1px solid var(--border);
+  padding-left: 18px;
+}
+
+.timelineItem {
+  position: relative;
+}
+
+.timelineItem::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--forest);
+}
+
+.timelineWhen {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2px;
+}
+
+.timelineTitle {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timelineDetail {
+  font-size: 12px;
+  color: var(--ink-lt);
+}
+
+.emptyText {
+  font-size: 13px;
+  color: var(--ink-lt);
+}
+
+.rightPanel {
+  background: var(--white);
+  border-left: 1px solid var(--border);
+  padding: 24px 0;
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+}
+
+.rpanelSection {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.rpanelHeading {
+  font-family: var(--font-accent), serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.snapshotGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.snapshotCell {
+  background: var(--parchment);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.snapshotNum {
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--forest);
+}
+
+.snapshotLabel {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 3px;
+}
+
+.familyCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--forest-lt);
+  background: var(--forest-pale);
+}
+
+.familyCardBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--parchment);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.familyCardName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.familyCardLoc {
+  font-size: 11px;
+  color: var(--ink-lt);
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eventRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.eventRow:last-child {
+  border-bottom: none;
+}
+
+.eventDays {
+  width: 40px;
+  text-align: center;
+}
+
+.eventDaysNum {
+  font-family: var(--font-display), serif;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--forest);
+}
+
+.eventDaysLabel {
+  font-size: 9px;
+  color: var(--ink-faint);
+}
+
+.eventInfo {
+  flex: 1;
+}
+
+.eventName {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eventDetail {
+  font-size: 11px;
+  color: var(--ink-lt);
+}
+
+.selectedCard {
+  background: var(--parchment);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 16px;
+}
+
+.selectedHead {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.selectedAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--forest-lt), var(--forest));
+  color: var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.selectedName {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.selectedSub {
+  font-size: 11px;
+  color: var(--ink-lt);
+}
+
+.selectedDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--ink-mid);
+}
+
+.selectedDetails span {
+  color: var(--ink-faint);
+}
+
+.selectedBlock {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.selectedTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+@media (max-width: 1200px) {
+  .appLayout {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .rightPanel {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .appLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+
+  .topnav {
+    padding: 0 12px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .profileHeader {
+    padding: 22px 16px;
+    flex-direction: column;
+  }
+
+  .tabBar {
+    top: 52px;
+    overflow-x: auto;
+    padding: 0 12px;
+  }
+
+  .contentBody {
+    padding: 18px 14px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}

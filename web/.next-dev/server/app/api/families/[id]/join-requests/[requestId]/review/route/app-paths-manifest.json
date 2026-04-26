@@ -1,0 +1,3 @@
+{
+  "/api/families/[id]/join-requests/[requestId]/review/route": "app/api/families/[id]/join-requests/[requestId]/review/route.js"
+}

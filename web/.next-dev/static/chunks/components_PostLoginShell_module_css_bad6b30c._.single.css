@@ -1,0 +1,403 @@
+/* [project]/components/PostLoginShell.module.css [app-client] (css) */
+.PostLoginShell-module__QyUwxW__page {
+  color: #1e2420;
+  background: radial-gradient(circle at 0 0, rgba(212, 168, 67, .14), rgba(0, 0, 0, 0) 28%), radial-gradient(circle at 100% 0, rgba(45, 74, 45, .08), rgba(0, 0, 0, 0) 26%), linear-gradient(#f5ede0 0%, #fdf9f2 100%);
+  min-height: 100vh;
+}
+
+.PostLoginShell-module__QyUwxW__topNav {
+  z-index: 20;
+  background: #2d4a35;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .18);
+}
+
+.PostLoginShell-module__QyUwxW__topNavInner {
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 1380px;
+  height: 52px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__brandLink, .PostLoginShell-module__QyUwxW__brandLogoWrap {
+  color: #f5f0e8;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__brandLogo {
+  -o-object-fit: contain;
+  object-fit: contain;
+  width: 126px;
+  height: auto;
+  max-height: 40px;
+}
+
+.PostLoginShell-module__QyUwxW__brandIcon {
+  background: #b8943e;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+  display: inline-flex;
+}
+
+.PostLoginShell-module__QyUwxW__brandText {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__brandFallback {
+  color: #f5f0e8;
+  font-family: var(--font-accent);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__topActions {
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__topAction {
+  letter-spacing: .03em;
+  color: rgba(245, 240, 232, .65);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.PostLoginShell-module__QyUwxW__topAction:hover {
+  color: #f5f0e8;
+  background: rgba(255, 255, 255, .08);
+}
+
+.PostLoginShell-module__QyUwxW__topActionActive {
+  color: #f5f0e8;
+  background: rgba(255, 255, 255, .14);
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__navAvatar {
+  color: #f5f0e8;
+  background: #4e7a5a;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__shell {
+  width: 100%;
+  min-height: calc(100vh - 52px);
+  display: grid;
+}
+
+.PostLoginShell-module__QyUwxW__shellNoRail {
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.PostLoginShell-module__QyUwxW__shellWithRail {
+  grid-template-columns: 220px minmax(0, 1fr) 272px;
+}
+
+.PostLoginShell-module__QyUwxW__sidebar {
+  background: #fdfaf5;
+  border-right: 1px solid rgba(45, 74, 53, .12);
+  flex-direction: column;
+  height: calc(100vh - 52px);
+  padding: 24px 0;
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 52px;
+  overflow-y: auto;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarContext {
+  border-bottom: 1px solid rgba(45, 74, 53, .12);
+  margin-bottom: 20px;
+  padding: 0 20px 20px;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarNav {
+  padding: 0;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarLabel {
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #9ba598;
+  margin: 0 0 8px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarNav .PostLoginShell-module__QyUwxW__sidebarLabel {
+  margin-bottom: 8px;
+  padding: 0 20px;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarValue {
+  font-family: var(--font-accent);
+  color: #1e2420;
+  font-size: 15px;
+  font-weight: 600;
+  display: block;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarFamilyButton {
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarFamilyCode {
+  color: #2d4a35;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarHint {
+  color: #6b7568;
+  margin-top: 1px;
+  font-size: 12px;
+  display: block;
+}
+
+.PostLoginShell-module__QyUwxW__navList {
+  flex-direction: column;
+  gap: 0;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__navItem {
+  color: #3d4840;
+  border-left: 3px solid rgba(0, 0, 0, 0);
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__navItemIcon {
+  opacity: .55;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  display: inline-flex;
+}
+
+.PostLoginShell-module__QyUwxW__navItemActive .PostLoginShell-module__QyUwxW__navItemIcon {
+  opacity: 1;
+}
+
+.PostLoginShell-module__QyUwxW__navItem:hover {
+  color: #2d4a35;
+  background: #e8f0ea;
+}
+
+.PostLoginShell-module__QyUwxW__navItemActive {
+  color: #2d4a35;
+  background: #e8f0ea;
+  border-left-color: #2d4a35;
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarUser {
+  border-top: 1px solid rgba(45, 74, 53, .12);
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px 20px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarUserAvatar {
+  color: #f5f0e8;
+  background: #2d4a35;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarUserName {
+  color: #1e2420;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.PostLoginShell-module__QyUwxW__sidebarUserRole {
+  color: #9ba598;
+  margin: 1px 0 0;
+  font-size: 10px;
+}
+
+.PostLoginShell-module__QyUwxW__main {
+  padding-bottom: 56px;
+  overflow-y: auto;
+}
+
+.PostLoginShell-module__QyUwxW__pageTop {
+  background: #fdfaf5;
+  border-bottom: 1px solid rgba(45, 74, 53, .12);
+  padding: 32px 36px 24px;
+}
+
+.PostLoginShell-module__QyUwxW__pageTop > div {
+  max-width: 760px;
+}
+
+.PostLoginShell-module__QyUwxW__contentGrid {
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px 36px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__eyebrow {
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9ba598;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 9px;
+  font-weight: 600;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__eyebrow:before {
+  content: "";
+  background: #9ba598;
+  width: 20px;
+  height: 1px;
+  display: block;
+}
+
+.PostLoginShell-module__QyUwxW__title {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  margin: 8px 0 6px;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.PostLoginShell-module__QyUwxW__subtitle {
+  color: #6b7568;
+  font-size: 13px;
+  line-height: 1.65;
+  font-family: var(--font-body);
+  margin: 0;
+}
+
+.PostLoginShell-module__QyUwxW__footer {
+  color: #6b7568;
+  border-top: 1px solid rgba(45, 74, 53, .12);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  font-size: 11px;
+  display: flex;
+}
+
+.PostLoginShell-module__QyUwxW__rightRail {
+  background: #fdfaf5;
+  border-left: 1px solid rgba(45, 74, 53, .12);
+  height: calc(100vh - 52px);
+  padding: 24px 12px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 52px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1200px) {
+  .PostLoginShell-module__QyUwxW__shellWithRail {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .PostLoginShell-module__QyUwxW__rightRail {
+    border-top: 1px solid rgba(45, 74, 53, .12);
+    border-left: none;
+    flex-wrap: wrap;
+    grid-column: 1 / -1;
+    gap: 16px;
+    height: auto;
+    padding: 16px;
+    display: flex;
+    position: static;
+  }
+}
+
+@media (max-width: 920px) {
+  .PostLoginShell-module__QyUwxW__topNavInner {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 52px;
+    padding: 10px 12px;
+  }
+
+  .PostLoginShell-module__QyUwxW__topActions {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .PostLoginShell-module__QyUwxW__shellNoRail, .PostLoginShell-module__QyUwxW__shellWithRail {
+    grid-template-columns: 1fr;
+  }
+
+  .PostLoginShell-module__QyUwxW__sidebar {
+    border-bottom: 1px solid rgba(45, 74, 53, .12);
+    border-right: none;
+    height: auto;
+    position: static;
+  }
+
+  .PostLoginShell-module__QyUwxW__pageTop {
+    padding: 22px 16px 18px;
+  }
+
+  .PostLoginShell-module__QyUwxW__contentGrid {
+    padding: 16px;
+  }
+}
+
+/*# sourceMappingURL=components_PostLoginShell_module_css_bad6b30c._.single.css.map*/
