@@ -18,6 +18,7 @@ type Msg91Response = {
 
 const otpProvider = env.otpProvider;
 const defaultCountryCode = env.msg91CountryCode;
+const fixedOtpCode = env.otpFixedCode;
 
 const normalizeMobileForProvider = (mobileNumber: string): string => {
   const digitsOnly = mobileNumber.replace(/\D/g, "");
@@ -116,12 +117,12 @@ const verifyViaMsg91 = async (mobileNumber: string, otp: string): Promise<Verify
 
 const sendViaMock = async (): Promise<SendOtpResult> => ({
   ok: true,
-  message: "Mock OTP sent. Use 123456 to verify in local development.",
+  message: `Mock OTP sent. Use ${fixedOtpCode} to verify in local development.`,
 });
 
 const verifyViaMock = async (_mobileNumber: string, otp: string): Promise<VerifyOtpResult> => ({
-  ok: otp === "123456",
-  message: otp === "123456" ? "Mock OTP verified" : "Invalid OTP",
+  ok: otp === fixedOtpCode,
+  message: otp === fixedOtpCode ? "Mock OTP verified" : "Invalid OTP",
 });
 
 export const sendOtp = async (mobileNumber: string): Promise<SendOtpResult> => {

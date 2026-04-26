@@ -39,6 +39,11 @@ go run ./cmd/server
 3. Set `POSTGRES_DSN` before starting the API.
 4. The API auto-runs SQL migrations from `api/migrations` on startup.
 
+Schema reference:
+- `docs/DB_SCHEMA.md` (family-space and platform table design)
+- `api-node/prisma/schema.prisma` (Prisma source of truth)
+- `docs/RAILWAY_DB_SETUP.md` (Railway PostgreSQL deployment setup)
+
 ## Initial Scope
 
 - Family onboarding and creation

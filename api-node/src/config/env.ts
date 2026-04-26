@@ -32,6 +32,14 @@ const parseOrigins = (raw: string): string[] =>
     .map((origin) => origin.trim())
     .filter(Boolean);
 
+const parseFixedOtpCode = (raw: string): string => {
+  const value = raw.trim();
+  if (!/^[0-9]{4,8}$/.test(value)) {
+    throw new Error("OTP_FIXED_CODE must contain 4 to 8 digits");
+  }
+  return value;
+};
+
 const apiAuthToken = required("API_AUTH_TOKEN");
 if (apiAuthToken.length < 32) {
   throw new Error("API_AUTH_TOKEN must be at least 32 characters");
@@ -61,6 +69,7 @@ export const env = {
   rateLimitWindowMs: parseNumber("RATE_LIMIT_WINDOW_MS", 60_000),
   rateLimitMaxRequests: parseNumber("RATE_LIMIT_MAX_REQUESTS", 120),
   otpProvider: (process.env.OTP_PROVIDER ?? "mock").trim().toLowerCase(),
+  otpFixedCode: parseFixedOtpCode(process.env.OTP_FIXED_CODE ?? "123456"),
   msg91BaseUrl: process.env.MSG91_BASE_URL?.trim() || "https://control.msg91.com/api/v5/",
   msg91AuthKey: process.env.MSG91_AUTH_KEY?.trim() || "",
   msg91OtpTemplateId: process.env.MSG91_OTP_TEMPLATE_ID?.trim() || "",
