@@ -14,6 +14,9 @@ export type KinshipCode =
   | "HUSBAND"
   | "WIFE"
   | "SPOUSE"
+  | "SON_IN_LAW"
+  | "DAUGHTER_IN_LAW"
+  | "CHILD_IN_LAW"
   | "GRANDFATHER"
   | "GRANDMOTHER"
   | "GRANDPARENT"
@@ -42,94 +45,58 @@ export type KinshipCode =
   | "NATINI"
   | "FAMILY_MEMBER";
 
-const KINSHIP_MASTER: Record<KinshipLanguage, Record<KinshipCode, string>> = {
-  en: {
-    SELF: "Self",
-    FATHER: "Father",
-    MOTHER: "Mother",
-    PARENT: "Parent",
-    SON: "Son",
-    DAUGHTER: "Daughter",
-    CHILD: "Child",
-    BROTHER: "Brother",
-    SISTER: "Sister",
-    SIBLING: "Sibling",
-    HUSBAND: "Husband",
-    WIFE: "Wife",
-    SPOUSE: "Spouse",
-    GRANDFATHER: "Grandfather",
-    GRANDMOTHER: "Grandmother",
-    GRANDPARENT: "Grandparent",
-    GRANDSON: "Grandson",
-    GRANDDAUGHTER: "Granddaughter",
-    GRANDCHILD: "Grandchild",
-    MAMA: "Maternal uncle (Mama)",
-    MAMI: "Maternal uncle's wife (Mami)",
-    MAUSI: "Maternal aunt (Mausi)",
-    MAUSA: "Maternal aunt's husband (Mausa)",
-    CHACHA: "Paternal uncle (Chacha)",
-    CHACHI: "Paternal uncle's wife (Chachi)",
-    BUA: "Paternal aunt (Bua)",
-    FUFA: "Paternal aunt's husband (Fufa Ji)",
-    BHATIJA: "Nephew (brother's son)",
-    BHATIJI: "Niece (brother's daughter)",
-    BHANJA: "Nephew (sister's son)",
-    BHANJI: "Niece (sister's daughter)",
-    DADA: "Paternal grandfather (Dada)",
-    DADI: "Paternal grandmother (Dadi)",
-    NANA: "Maternal grandfather (Nana)",
-    NANI: "Maternal grandmother (Nani)",
-    POTA: "Grandson (son's son)",
-    POTI: "Granddaughter (son's daughter)",
-    NATI: "Grandson (daughter's son)",
-    NATINI: "Granddaughter (daughter's daughter)",
-    FAMILY_MEMBER: "Family member",
-  },
-  hi: {
-    SELF: "स्वयं",
-    FATHER: "पिता",
-    MOTHER: "माता",
-    PARENT: "माता-पिता",
-    SON: "बेटा",
-    DAUGHTER: "बेटी",
-    CHILD: "संतान",
-    BROTHER: "भाई",
-    SISTER: "बहन",
-    SIBLING: "भाई/बहन",
-    HUSBAND: "पति",
-    WIFE: "पत्नी",
-    SPOUSE: "जीवनसाथी",
-    GRANDFATHER: "दादा/नाना",
-    GRANDMOTHER: "दादी/नानी",
-    GRANDPARENT: "दादा-दादी/नाना-नानी",
-    GRANDSON: "पोता/नाती",
-    GRANDDAUGHTER: "पोती/नातिन",
-    GRANDCHILD: "पोता/पोती/नाती/नातिन",
-    MAMA: "मामा",
-    MAMI: "मामी",
-    MAUSI: "मौसी",
-    MAUSA: "मौसा",
-    CHACHA: "चाचा",
-    CHACHI: "चाची",
-    BUA: "बुआ",
-    FUFA: "फूफा जी",
-    BHATIJA: "भतीजा",
-    BHATIJI: "भतीजी",
-    BHANJA: "भांजा",
-    BHANJI: "भांजी",
-    DADA: "दादा",
-    DADI: "दादी",
-    NANA: "नाना",
-    NANI: "नानी",
-    POTA: "पोता",
-    POTI: "पोती",
-    NATI: "नाती",
-    NATINI: "नातिन",
-    FAMILY_MEMBER: "परिवार सदस्य",
-  },
+const ENGLISH_KINSHIP_MASTER: Record<KinshipCode, string> = {
+  SELF: "Self",
+  FATHER: "Father",
+  MOTHER: "Mother",
+  PARENT: "Parent",
+  SON: "Son",
+  DAUGHTER: "Daughter",
+  CHILD: "Child",
+  BROTHER: "Brother",
+  SISTER: "Sister",
+  SIBLING: "Sibling",
+  HUSBAND: "Husband",
+  WIFE: "Wife",
+  SPOUSE: "Spouse",
+  SON_IN_LAW: "Son-in-law",
+  DAUGHTER_IN_LAW: "Daughter-in-law",
+  CHILD_IN_LAW: "Child-in-law",
+  GRANDFATHER: "Grandfather",
+  GRANDMOTHER: "Grandmother",
+  GRANDPARENT: "Grandparent",
+  GRANDSON: "Grandson",
+  GRANDDAUGHTER: "Granddaughter",
+  GRANDCHILD: "Grandchild",
+  MAMA: "Maternal uncle (Mama)",
+  MAMI: "Maternal uncle's wife (Mami)",
+  MAUSI: "Maternal aunt (Mausi)",
+  MAUSA: "Maternal aunt's husband (Mausa)",
+  CHACHA: "Paternal uncle (Chacha)",
+  CHACHI: "Paternal uncle's wife (Chachi)",
+  BUA: "Paternal aunt (Bua)",
+  FUFA: "Paternal aunt's husband (Fufa Ji)",
+  BHATIJA: "Nephew (brother's son)",
+  BHATIJI: "Niece (brother's daughter)",
+  BHANJA: "Nephew (sister's son)",
+  BHANJI: "Niece (sister's daughter)",
+  DADA: "Paternal grandfather (Dada)",
+  DADI: "Paternal grandmother (Dadi)",
+  NANA: "Maternal grandfather (Nana)",
+  NANI: "Maternal grandmother (Nani)",
+  POTA: "Grandson (son's son)",
+  POTI: "Granddaughter (son's daughter)",
+  NATI: "Grandson (daughter's son)",
+  NATINI: "Granddaughter (daughter's daughter)",
+  FAMILY_MEMBER: "Family member",
 };
 
-const KINSHIP_CODES = new Set<KinshipCode>(Object.keys(KINSHIP_MASTER.en) as KinshipCode[]);
+const KINSHIP_MASTER: Record<KinshipLanguage, Record<KinshipCode, string>> = {
+  en: ENGLISH_KINSHIP_MASTER,
+  hi: ENGLISH_KINSHIP_MASTER,
+};
+
+const KINSHIP_CODES = new Set<KinshipCode>(Object.keys(ENGLISH_KINSHIP_MASTER) as KinshipCode[]);
 
 export const getKinshipLabel = (code: KinshipCode, language: KinshipLanguage = "en") =>
   KINSHIP_MASTER[language][code];
@@ -137,11 +104,8 @@ export const getKinshipLabel = (code: KinshipCode, language: KinshipLanguage = "
 export const isKinshipCode = (value: string): value is KinshipCode =>
   KINSHIP_CODES.has(value as KinshipCode);
 
-export const normalizeKinshipLanguage = (value: unknown): KinshipLanguage => {
-  if (typeof value === "string" && value.toLowerCase().startsWith("hi")) {
-    return "hi";
-  }
-
+export const normalizeKinshipLanguage = (_value: unknown): KinshipLanguage => {
+  // Temporarily force English output until master data-backed localization is introduced.
   return "en";
 };
 
