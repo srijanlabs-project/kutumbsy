@@ -10,6 +10,29 @@ import { slugify } from "../../modules/families/utils.js";
 
 const router = Router();
 
+const resolveUniqueFamilySlug = async (
+  tx: Parameters<Parameters<typeof prisma.$transaction>[0]>[0],
+  baseSlug: string,
+) => {
+  const normalizedBase = baseSlug.trim().toLowerCase();
+  let candidate = normalizedBase;
+  let suffix = 2;
+
+  while (true) {
+    const existing = await tx.family.findUnique({
+      where: { slug: candidate },
+      select: { id: true },
+    });
+
+    if (!existing) {
+      return candidate;
+    }
+
+    candidate = `${normalizedBase}-${suffix}`;
+    suffix += 1;
+  }
+};
+
 router.get("/families", async (req, res) => {
   const auth = req.authContext;
   const scope = String(req.query.scope ?? "").trim().toLowerCase();
@@ -46,9 +69,9 @@ router.post("/families", async (req, res) => {
   }
 
   const { name, slug, description, nativePlace, createdByPhone, initialAdminName, initialAdminMobileNumber } = parsed.data;
-  const finalSlug = slugify(slug ?? "") || slugify(name);
+  const requestedSlug = slugify(slug ?? "") || slugify(name);
 
-  if (!finalSlug) {
+  if (!requestedSlug) {
     res.status(400).json({ error: "slug could not be generated" });
     return;
   }
@@ -74,6 +97,7 @@ router.post("/families", async (req, res) => {
   const auth = req.authContext;
   const result = await prisma.$transaction(async (tx) => {
     const familyCode = await generateUniqueFamilyCode(tx);
+    const finalSlug = await resolveUniqueFamilySlug(tx, requestedSlug);
 
     const createdFamily = await tx.family.create({
       data: {
