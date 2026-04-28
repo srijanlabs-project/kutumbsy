@@ -60,16 +60,6 @@ router.post("/families", async (req, res) => {
   }
 
   const initialAdminMobile = initialAdminMobileNumber ? sanitizeMobile(initialAdminMobileNumber) : "";
-  if (shouldCreateInitialAdmin) {
-    const existingUser = await prisma.user.findUnique({
-      where: { mobileNumber: initialAdminMobile },
-    });
-
-    if (existingUser) {
-      res.status(409).json({ error: "initial family space admin mobile number is already in use" });
-      return;
-    }
-  }
 
   const auth = req.authContext;
   const result = await prisma.$transaction(async (tx) => {
@@ -95,25 +85,49 @@ router.post("/families", async (req, res) => {
         },
       });
 
-      const initialUser = await tx.user.create({
-        data: {
-          fullName: initialAdminName.trim(),
-          mobileNumber: initialAdminMobile,
-          passwordHash: null,
-          phoneVerifiedAt: null,
-        },
-      });
+      const initialUser =
+        (await tx.user.findUnique({
+          where: { mobileNumber: initialAdminMobile },
+        })) ??
+        (await tx.user.create({
+          data: {
+            fullName: initialAdminName.trim(),
+            mobileNumber: initialAdminMobile,
+            passwordHash: null,
+            phoneVerifiedAt: null,
+          },
+        }));
 
-      await tx.familyMembership.create({
-        data: {
+      await tx.familyMembership.upsert({
+        where: {
+          familyId_userId: {
+            familyId: createdFamily.id,
+            userId: initialUser.id,
+          },
+        },
+        update: {
+          role: "admin",
+          status: "active",
+        },
+        create: {
           familyId: createdFamily.id,
           userId: initialUser.id,
           role: "admin",
+          status: "active",
         },
       });
 
-      await tx.userPersonLink.create({
-        data: {
+      await tx.userPersonLink.upsert({
+        where: {
+          familyId_userId: {
+            familyId: createdFamily.id,
+            userId: initialUser.id,
+          },
+        },
+        update: {
+          personId: initialPerson.id,
+        },
+        create: {
           familyId: createdFamily.id,
           userId: initialUser.id,
           personId: initialPerson.id,
