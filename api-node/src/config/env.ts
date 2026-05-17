@@ -69,7 +69,7 @@ export const env = {
   rateLimitWindowMs: parseNumber("RATE_LIMIT_WINDOW_MS", 60_000),
   rateLimitMaxRequests: parseNumber("RATE_LIMIT_MAX_REQUESTS", 120),
   otpProvider: (process.env.OTP_PROVIDER ?? "mock").trim().toLowerCase(),
-  otpFixedCode: parseFixedOtpCode(process.env.OTP_FIXED_CODE ?? "123456"),
+  otpFixedCode: parseFixedOtpCode(process.env.OTP_FIXED_CODE ?? "123789"),
   msg91BaseUrl: process.env.MSG91_BASE_URL?.trim() || "https://control.msg91.com/api/v5/",
   msg91AuthKey: process.env.MSG91_AUTH_KEY?.trim() || "",
   msg91OtpTemplateId: process.env.MSG91_OTP_TEMPLATE_ID?.trim() || "",

@@ -1,0 +1,85 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(30, 74, 58, 0.18), transparent 38%),
+    radial-gradient(circle at 90% 90%, rgba(200, 97, 10, 0.2), transparent 42%),
+    linear-gradient(160deg, #f9f5ee 0%, #efe6d3 100%);
+}
+
+.card {
+  width: min(680px, 100%);
+  padding: 40px 28px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(28, 18, 8, 0.12);
+  box-shadow: 0 20px 52px rgba(28, 18, 8, 0.14);
+  text-align: center;
+}
+
+.logoWrap {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 14px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(28, 18, 8, 0.1);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #6b5a40;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1;
+  color: #1e4a3a;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 52ch;
+  line-height: 1.7;
+  color: #2d1f0a;
+}
+
+.visualWrap {
+  margin: 22px auto 8px;
+}
+
+.visual {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(28, 18, 8, 0.12);
+}
+
+.note {
+  margin: 18px 0 0;
+  font-size: 0.95rem;
+  color: #6b5a40;
+}
+
+.note a {
+  color: #1e4a3a;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 32px 20px;
+    border-radius: 18px;
+  }
+}

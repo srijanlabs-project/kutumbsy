@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { AuthWorkspace } from "./workspace";
 
 type PlatformAuthPageProps = {
   searchParams?: Promise<{ mode?: string }>;
@@ -8,12 +9,11 @@ type PlatformAuthPageProps = {
 export default async function PlatformAuthPage({ searchParams }: PlatformAuthPageProps) {
   const cookieStore = await cookies();
   const hasSession = Boolean(cookieStore.get("kutumbsy_session")?.value);
-  const params = searchParams ? await searchParams : undefined;
 
-  if (!hasSession) {
-    const target = params?.mode === "register" ? "/?auth=register" : "/?auth=login";
-    redirect(target);
+  if (hasSession) {
+    redirect("/family-space");
   }
 
-  redirect("/family-space");
+  const params = searchParams ? await searchParams : undefined;
+  return <AuthWorkspace key={params?.mode ?? "login"} />;
 }

@@ -19,6 +19,7 @@ type Msg91Response = {
 const otpProvider = env.otpProvider;
 const defaultCountryCode = env.msg91CountryCode;
 const fixedOtpCode = env.otpFixedCode;
+const msg91TimeoutMs = Number(process.env.MSG91_TIMEOUT_MS ?? "15000");
 
 const normalizeMobileForProvider = (mobileNumber: string): string => {
   const digitsOnly = mobileNumber.replace(/\D/g, "");
@@ -50,6 +51,24 @@ const buildMsg91BaseUrl = (): URL => {
   return new URL(env.msg91BaseUrl);
 };
 
+const fetchWithTimeout = async (input: URL | string, init: RequestInit, timeoutMs: number): Promise<Response> => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(input, {
+      ...init,
+      signal: controller.signal,
+    });
+  } catch (error) {
+    if (error instanceof Error && error.name === "AbortError") {
+      throw new Error("OTP provider timeout. Please try again.");
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
+};
+
 const sendViaMsg91 = async (mobileNumber: string): Promise<SendOtpResult> => {
   const authKey = env.msg91AuthKey;
   const templateId = env.msg91OtpTemplateId;
@@ -63,13 +82,13 @@ const sendViaMsg91 = async (mobileNumber: string): Promise<SendOtpResult> => {
   url.searchParams.set("template_id", templateId);
   url.searchParams.set("authkey", authKey);
 
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  });
+  }, msg91TimeoutMs);
 
   const payload = await parseJsonSafely<Msg91Response>(response);
   if (!response.ok) {
@@ -95,13 +114,13 @@ const verifyViaMsg91 = async (mobileNumber: string, otp: string): Promise<Verify
   url.searchParams.set("mobile", normalizeMobileForProvider(mobileNumber));
   url.searchParams.set("otp", otp);
 
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     method: "GET",
     headers: {
       Accept: "application/json",
       authkey: authKey,
     },
-  });
+  }, msg91TimeoutMs);
 
   const payload = await parseJsonSafely<Msg91Response>(response);
   const message = payload?.message || payload?.error || "OTP verification failed";
@@ -117,7 +136,7 @@ const verifyViaMsg91 = async (mobileNumber: string, otp: string): Promise<Verify
 
 const sendViaMock = async (): Promise<SendOtpResult> => ({
   ok: true,
-  message: `Mock OTP sent. Use ${fixedOtpCode} to verify in local development.`,
+  message: "Mock OTP sent successfully.",
 });
 
 const verifyViaMock = async (_mobileNumber: string, otp: string): Promise<VerifyOtpResult> => ({
